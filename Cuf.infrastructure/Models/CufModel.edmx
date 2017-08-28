@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CufModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblConstituency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Constituency" Type="nvarchar" MaxLength="155" Nullable="false" />
+          <Property Name="DistrictId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Voters2015.dbo.tblPollingShehia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblPollingShehia">
+          <Key>
+            <PropertyRef Name="ShehiaId" />
+            <PropertyRef Name="PollingStationId" />
+            <PropertyRef Name="WordId" />
+            <PropertyRef Name="ConstituencyId" />
+          </Key>
+          <Property Name="ShehiaId" Type="int" Nullable="false" />
+          <Property Name="PollingStationId" Type="int" Nullable="false" />
+          <Property Name="WordId" Type="int" Nullable="false" />
+          <Property Name="ConstituencyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPollingStations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="ShehiaId" Type="int" Nullable="false" />
+          <Property Name="ConstituencyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblShehia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="155" Nullable="false" />
+          <Property Name="WordId" Type="int" Nullable="false" />
+          <Property Name="ConstituencyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblVoters2015">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="55" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="55" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="55" Nullable="false" />
+          <Property Name="DateBirth" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="ResidentialAddress" Type="nvarchar" MaxLength="155" />
+          <Property Name="PollingStationId" Type="int" Nullable="false" />
+          <Property Name="ResidentialConstituencyId" Type="int" Nullable="false" />
+          <Property Name="VotingConstituencyId" Type="int" Nullable="false" />
+          <Property Name="VoterIDNumber" Type="int" />
+          <Property Name="LifeStatus" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="tblWords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="155" Nullable="false" />
+          <Property Name="ConstituencyId" Type="int" Nullable="false" />
+          <Property Name="DistrictId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CufModelStoreContainer">
+          <EntitySet Name="tblConstituency" EntityType="Self.tblConstituency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPollingStations" EntityType="Self.tblPollingStations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblShehia" EntityType="Self.tblShehia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblVoters2015" EntityType="Self.tblVoters2015" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWords" EntityType="Self.tblWords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPollingShehia" EntityType="Self.tblPollingShehia" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblPollingShehia].[ShehiaId] AS [ShehiaId], 
+    [tblPollingShehia].[PollingStationId] AS [PollingStationId], 
+    [tblPollingShehia].[WordId] AS [WordId], 
+    [tblPollingShehia].[ConstituencyId] AS [ConstituencyId]
+    FROM [dbo].[tblPollingShehia] AS [tblPollingShehia]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CufModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Constituent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Constituency" Type="String" MaxLength="155" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DistrictId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PollingStation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="ShehiaId" Type="Int32" Nullable="false" />
+          <Property Name="ConstituencyId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shehia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="155" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WordId" Type="Int32" Nullable="false" />
+          <Property Name="ConstituencyId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Voter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateBirth" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResidentialAddress" Type="String" MaxLength="155" FixedLength="false" Unicode="true" />
+          <Property Name="PollingStationId" Type="Int32" Nullable="false" />
+          <Property Name="ResidentialConstituencyId" Type="Int32" Nullable="false" />
+          <Property Name="VotingConstituencyId" Type="Int32" Nullable="false" />
+          <Property Name="VoterIDNumber" Type="Int32" />
+          <Property Name="LifeStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Word">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="155" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConstituencyId" Type="Int32" Nullable="false" />
+          <Property Name="DistrictId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PollingShehia">
+          <Key>
+            <PropertyRef Name="ShehiaId" />
+            <PropertyRef Name="PollingStationId" />
+            <PropertyRef Name="WordId" />
+            <PropertyRef Name="ConstituencyId" />
+          </Key>
+          <Property Name="ShehiaId" Type="Int32" Nullable="false" />
+          <Property Name="PollingStationId" Type="Int32" Nullable="false" />
+          <Property Name="WordId" Type="Int32" Nullable="false" />
+          <Property Name="ConstituencyId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CufDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Constituents" EntityType="CufModel.Constituent" />
+          <EntitySet Name="PollingStations" EntityType="CufModel.PollingStation" />
+          <EntitySet Name="Shehias" EntityType="CufModel.Shehia" />
+          <EntitySet Name="Voters1" EntityType="CufModel.Voter" />
+          <EntitySet Name="Words" EntityType="CufModel.Word" />
+          <EntitySet Name="PollingShehias" EntityType="CufModel.PollingShehia" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CufModelStoreContainer" CdmEntityContainer="CufDBContext">
+          <EntitySetMapping Name="Constituents">
+            <EntityTypeMapping TypeName="CufModel.Constituent">
+              <MappingFragment StoreEntitySet="tblConstituency">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Constituency" ColumnName="Constituency" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PollingStations">
+            <EntityTypeMapping TypeName="CufModel.PollingStation">
+              <MappingFragment StoreEntitySet="tblPollingStations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="ShehiaId" ColumnName="ShehiaId" />
+                <ScalarProperty Name="ConstituencyId" ColumnName="ConstituencyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shehias">
+            <EntityTypeMapping TypeName="CufModel.Shehia">
+              <MappingFragment StoreEntitySet="tblShehia">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="WordId" ColumnName="WordId" />
+                <ScalarProperty Name="ConstituencyId" ColumnName="ConstituencyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voters1">
+            <EntityTypeMapping TypeName="CufModel.Voter">
+              <MappingFragment StoreEntitySet="tblVoters2015">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateBirth" ColumnName="DateBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ResidentialAddress" ColumnName="ResidentialAddress" />
+                <ScalarProperty Name="PollingStationId" ColumnName="PollingStationId" />
+                <ScalarProperty Name="ResidentialConstituencyId" ColumnName="ResidentialConstituencyId" />
+                <ScalarProperty Name="VotingConstituencyId" ColumnName="VotingConstituencyId" />
+                <ScalarProperty Name="VoterIDNumber" ColumnName="VoterIDNumber" />
+                <ScalarProperty Name="LifeStatus" ColumnName="LifeStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Words">
+            <EntityTypeMapping TypeName="CufModel.Word">
+              <MappingFragment StoreEntitySet="tblWords">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ConstituencyId" ColumnName="ConstituencyId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PollingShehias">
+            <EntityTypeMapping TypeName="CufModel.PollingShehia">
+              <MappingFragment StoreEntitySet="tblPollingShehia">
+                <ScalarProperty Name="ShehiaId" ColumnName="ShehiaId" />
+                <ScalarProperty Name="PollingStationId" ColumnName="PollingStationId" />
+                <ScalarProperty Name="WordId" ColumnName="WordId" />
+                <ScalarProperty Name="ConstituencyId" ColumnName="ConstituencyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

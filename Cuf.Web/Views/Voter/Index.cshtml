@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Cuf.infrastructure.Models.Voter>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResidentialAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PollingStationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResidentialConstituencyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VotingConstituencyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VoterIDNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LifeStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MiddleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResidentialAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PollingStationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResidentialConstituencyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VotingConstituencyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VoterIDNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LifeStatus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

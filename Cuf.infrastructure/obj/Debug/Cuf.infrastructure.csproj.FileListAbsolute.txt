@@ -1,0 +1,9 @@
+C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\bin\Debug\Cuf.infrastructure.dll.config
+C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\bin\Debug\Cuf.infrastructure.dll
+C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\bin\Debug\Cuf.infrastructure.pdb
+C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\bin\Debug\EntityFramework.dll
+C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\bin\Debug\EntityFramework.SqlServer.dll
+C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\bin\Debug\EntityFramework.xml
+C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\bin\Debug\EntityFramework.SqlServer.xml
+C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\obj\Debug\Cuf.infrastructure.dll
+C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\obj\Debug\Cuf.infrastructure.pdb

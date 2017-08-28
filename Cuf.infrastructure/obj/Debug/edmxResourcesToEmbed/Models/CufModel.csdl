@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CufModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Constituent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Constituency" Type="String" MaxLength="155" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DistrictId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PollingStation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="ShehiaId" Type="Int32" Nullable="false" />
+    <Property Name="ConstituencyId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Shehia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="155" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WordId" Type="Int32" Nullable="false" />
+    <Property Name="ConstituencyId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Voter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateBirth" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ResidentialAddress" Type="String" MaxLength="155" FixedLength="false" Unicode="true" />
+    <Property Name="PollingStationId" Type="Int32" Nullable="false" />
+    <Property Name="ResidentialConstituencyId" Type="Int32" Nullable="false" />
+    <Property Name="VotingConstituencyId" Type="Int32" Nullable="false" />
+    <Property Name="VoterIDNumber" Type="Int32" />
+    <Property Name="LifeStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Word">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="155" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ConstituencyId" Type="Int32" Nullable="false" />
+    <Property Name="DistrictId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PollingShehia">
+    <Key>
+      <PropertyRef Name="ShehiaId" />
+      <PropertyRef Name="PollingStationId" />
+      <PropertyRef Name="WordId" />
+      <PropertyRef Name="ConstituencyId" />
+    </Key>
+    <Property Name="ShehiaId" Type="Int32" Nullable="false" />
+    <Property Name="PollingStationId" Type="Int32" Nullable="false" />
+    <Property Name="WordId" Type="Int32" Nullable="false" />
+    <Property Name="ConstituencyId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="CufDBContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Constituents" EntityType="CufModel.Constituent" />
+    <EntitySet Name="PollingStations" EntityType="CufModel.PollingStation" />
+    <EntitySet Name="Shehias" EntityType="CufModel.Shehia" />
+    <EntitySet Name="Voters1" EntityType="CufModel.Voter" />
+    <EntitySet Name="Words" EntityType="CufModel.Word" />
+    <EntitySet Name="PollingShehias" EntityType="CufModel.PollingShehia" />
+  </EntityContainer>
+</Schema>

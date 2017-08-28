@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CufModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblConstituency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Constituency" Type="nvarchar" MaxLength="155" Nullable="false" />
+    <Property Name="DistrictId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Voters2015.dbo.tblPollingShehia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tblPollingShehia">
+    <Key>
+      <PropertyRef Name="ShehiaId" />
+      <PropertyRef Name="PollingStationId" />
+      <PropertyRef Name="WordId" />
+      <PropertyRef Name="ConstituencyId" />
+    </Key>
+    <Property Name="ShehiaId" Type="int" Nullable="false" />
+    <Property Name="PollingStationId" Type="int" Nullable="false" />
+    <Property Name="WordId" Type="int" Nullable="false" />
+    <Property Name="ConstituencyId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPollingStations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="ShehiaId" Type="int" Nullable="false" />
+    <Property Name="ConstituencyId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblShehia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="155" Nullable="false" />
+    <Property Name="WordId" Type="int" Nullable="false" />
+    <Property Name="ConstituencyId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblVoters2015">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="55" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="55" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="55" Nullable="false" />
+    <Property Name="DateBirth" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="ResidentialAddress" Type="nvarchar" MaxLength="155" />
+    <Property Name="PollingStationId" Type="int" Nullable="false" />
+    <Property Name="ResidentialConstituencyId" Type="int" Nullable="false" />
+    <Property Name="VotingConstituencyId" Type="int" Nullable="false" />
+    <Property Name="VoterIDNumber" Type="int" />
+    <Property Name="LifeStatus" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="tblWords">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="155" Nullable="false" />
+    <Property Name="ConstituencyId" Type="int" Nullable="false" />
+    <Property Name="DistrictId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="CufModelStoreContainer">
+    <EntitySet Name="tblConstituency" EntityType="Self.tblConstituency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPollingStations" EntityType="Self.tblPollingStations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblShehia" EntityType="Self.tblShehia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblVoters2015" EntityType="Self.tblVoters2015" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblWords" EntityType="Self.tblWords" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPollingShehia" EntityType="Self.tblPollingShehia" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tblPollingShehia].[ShehiaId] AS [ShehiaId], 
+    [tblPollingShehia].[PollingStationId] AS [PollingStationId], 
+    [tblPollingShehia].[WordId] AS [WordId], 
+    [tblPollingShehia].[ConstituencyId] AS [ConstituencyId]
+    FROM [dbo].[tblPollingShehia] AS [tblPollingShehia]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
