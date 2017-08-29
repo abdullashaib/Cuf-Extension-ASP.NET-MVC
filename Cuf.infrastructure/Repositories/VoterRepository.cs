@@ -35,7 +35,9 @@ namespace Cuf.infrastructure.Repositories
         // Polling station ID is passed to retrieve the data
         public IEnumerable<Models.Voter> GetVotersPollingStation(int Id)
         {
-            var results = from voter in context.Voters where voter.PollingStationId == Id select voter;
+            var results = from voter in context.Voters where voter.PollingStationId == Id
+                          orderby voter.FirstName, voter.MiddleName, voter.LastName, voter.Gender ascending
+                          select voter;
 
             return results;
                                              
@@ -49,6 +51,7 @@ namespace Cuf.infrastructure.Repositories
                           join voter2 in context.PollingShehias
                           on voter.PollingStationId equals voter2.PollingStationId
                           where voter2.ShehiaId == Id
+                          orderby voter.FirstName, voter.MiddleName, voter.LastName, voter.Gender ascending
                           select voter;
 
             return results;
@@ -63,6 +66,7 @@ namespace Cuf.infrastructure.Repositories
                           join voter2 in context.PollingShehias
                           on voter.PollingStationId equals voter2.PollingStationId
                           where voter2.WordId == Id
+                          orderby voter.FirstName, voter.MiddleName, voter.LastName, voter.Gender ascending
                           select voter;
 
             return results;
@@ -72,13 +76,15 @@ namespace Cuf.infrastructure.Repositories
         // Constituent ID is passed to retrieve the data
         public IEnumerable<Models.Voter> GetVotersConstituent(int Id)
         {
-            var results = from v in context.Voters where v.ResidentialConstituencyId == Id select v;
+            var results = from voter in context.Voters where voter.ResidentialConstituencyId == Id
+                          orderby voter.FirstName, voter.MiddleName, voter.LastName, voter.Gender ascending
+                          select voter;
             return results;
         }
 
         public Models.Voter FindById(int Id)
         {
-            var result = (from v in context.Voters where v.Id == Id select v).FirstOrDefault();
+            var result = (from voter in context.Voters where voter.Id == Id select voter).FirstOrDefault();
             return result;
         }
     }

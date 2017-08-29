@@ -7,3 +7,4 @@ C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\bin\Debug\Ent
 C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\bin\Debug\EntityFramework.SqlServer.xml
 C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\obj\Debug\Cuf.infrastructure.dll
 C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\obj\Debug\Cuf.infrastructure.pdb
+C:\Projects\CSharpProjects\CufExtensionSolution\Cuf.infrastructure\obj\Debug\Cuf.infrastructure.csprojResolveAssemblyReference.cache
