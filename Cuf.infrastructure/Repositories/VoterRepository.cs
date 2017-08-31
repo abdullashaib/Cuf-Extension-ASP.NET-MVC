@@ -1,5 +1,6 @@
 ﻿using Cuf.infrastructure.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,13 @@ namespace Cuf.infrastructure.Repositories
 
         public void Edit(Models.Voter voter)
         {
-            context.Entry(voter).Entity.State = System.Data.Entity.EntityState.Modified;
-            context.SaveChanges();
+            //context.Entry(voter).Entity.
+            //context.SaveChanges();
         }
 
         public void Remove(int Id)
         {
-            Voter voter = context.Voters.Find(Id);
-            context.Voters.Remove(voter);
+            context.Voters.Remove(context.Voters.FirstOrDefault(v => v.Id == Id));
             context.SaveChanges();
         }
 
@@ -60,14 +60,15 @@ namespace Cuf.infrastructure.Repositories
         // This will return IEnumerable of voters in word
         // Word ID is passed to retrieve the data, here subquery is used to fetch
         // polling station ID's for the particular word 
-        public IEnumerable<Models.Voter> GetVotersWord(int Id)
+        public IEnumerable<Voter> GetVotersWord(int Id)
         {
             var results = from voter in context.Voters
-                          join voter2 in context.PollingShehias
-                          on voter.PollingStationId equals voter2.PollingStationId
+                          join voter2 in context.PollingShehias on voter.PollingStationId equals voter2.PollingStationId
+                          join poll in context.PollingStations on voter.PollingStationId equals poll.Id
                           where voter2.WordId == Id
                           orderby voter.FirstName, voter.MiddleName, voter.LastName, voter.Gender ascending
                           select voter;
+                          
 
             return results;
         }

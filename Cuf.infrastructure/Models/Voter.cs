@@ -26,7 +26,5 @@ namespace Cuf.infrastructure.Models
         public int VotingConstituencyId { get; set; }
         public Nullable<int> VoterIDNumber { get; set; }
         public string LifeStatus { get; set; }
-
-        public System.Data.Entity.EntityState State { get; set; }
     }
 }

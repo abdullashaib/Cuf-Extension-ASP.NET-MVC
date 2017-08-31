@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script>
+        var uri = 'api/Voters';
+
+        $(document).ready(function () {
+            // Send an AJAX request
+            $.getJSON(uri)
+                .done(function (data) {
+                    // On success, 'data' contains a list of products.
+                    $.each(data, function (key, voter) {
+                        // Add a list item for the product.
+                        $('<li>', { text: formatItem(voter) }).appendTo($('#products'));
+                    });
+                });
+        });
+
+        function formatItem(voter) {
+            return voter.FirstName + ' ' + voter.MiddleName + ' ' + voter.LastName + ' ' + voter.DateBirth + ' ' + voter.Gender + ' ' +voter. ResidentialAddress;
+        }
+
+        function find() {
+            var id = $('#voterId').val();
+            $.getJSON(uri + '/' + id)
+                .done(function (data) {
+                    $('#voter').text(formatItem(data));
+                })
+                .fail(function (jqXHR, textStatus, err) {
+                    $('#voter').text('Error: ' + err);
+                });
+        }
+
+    </script>
+    </head>
+    <body>
+
+        <div class="container">
+            <h2>Search by ID</h2>
+            <input type="text" id="voterId" size="5" />
+            <input type="button" value="Search" onclick="find();" />
+            <p id="voter" />
+        </div>
+
+        <div class="container">
+            <ul id="products" />
+        </div>
+
+        
+    </body>
+    </html>
